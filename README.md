@@ -2,6 +2,8 @@
 
 Редизайн сайта [mastershina.uz](https://mastershina.uz/): грузовые шины ROADONE и CETROC, шины для спецтехники HENGTAR, диски SULTAN, запчасти HOWO / SHACMAN. Ташкент.
 
+**Смотреть:** https://alex22826.github.io/mastershina-site/
+
 Цвета — красный, чёрный, белый. Стилистика, кнопки и анимации взяты из демо [CANDY](https://alex22826.github.io/mastershina-demo-candy/).
 
 ## Что на главной
