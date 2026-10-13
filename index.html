@@ -1,0 +1,579 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MASTERSHINA — грузовые шины, диски и запчасти в Ташкенте</title>
+<meta name="description" content="MASTERSHINA — официальный дистрибьютор ROADONE и CETROC в Узбекистане. Грузовые шины, шины для спецтехники HENGTAR, диски SULTAN, запчасти HOWO и SHACMAN. Калькулятор комплекта, рассрочка, шиномонтаж.">
+<meta name="theme-color" content="#111114">
+<meta property="og:type" content="website">
+<meta property="og:title" content="MASTERSHINA — шины, диски и запчасти для грузовиков и спецтехники">
+<meta property="og:description" content="Официальный дистрибьютор ROADONE и CETROC. Склад и шоурумы в Ташкенте, рассрочка, доставка по Узбекистану.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='22' fill='%23111114'/%3E%3Ccircle cx='24' cy='24' r='19' fill='none' stroke='%23333' stroke-width='5' stroke-dasharray='3.4 2.6'/%3E%3Ccircle cx='24' cy='24' r='12' fill='%23e31e24'/%3E%3Ccircle cx='24' cy='24' r='4.5' fill='%23fff'/%3E%3C/svg%3E">
+
+<!-- Шрифт и картинка первого экрана — в приоритете -->
+<link rel="preload" href="assets/fonts/rubik-cyr.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/rubik-lat.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/products/gd800.webp" as="image" fetchpriority="high">
+
+<!-- Критичные стили: шрифт и прелоадер. Показываются сразу, не дожидаясь style.css -->
+<style>
+@font-face{font-family:'Rubik';font-style:normal;font-weight:400 900;font-display:swap;src:url(assets/fonts/rubik-cyr.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Rubik';font-style:normal;font-weight:400 900;font-display:swap;src:url(assets/fonts/rubik-lat.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+html{background:#111114}
+html.js:not(.is-ready){overflow:hidden}
+.pl{position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;background:radial-gradient(circle at 50% 40%,#3d0c10 0,rgba(17,17,20,0) 44%),#111114;color:#fff;font:400 16px/1.4 Rubik,system-ui,-apple-system,'Segoe UI',sans-serif;transition:opacity .65s cubic-bezier(.2,.8,.2,1) .3s,visibility 0s 1s;animation:plSafe 0s 15s forwards}
+.pl-out{opacity:0;visibility:hidden}
+.pl-stage{position:relative;width:min(440px,86vw);height:150px}
+.pl-roll{position:absolute;left:50%;top:0;width:128px;height:128px;margin-left:-64px;animation:plIn 1.25s cubic-bezier(.22,.9,.32,1) both}
+.pl-roll::after{content:'';position:absolute;left:12%;right:12%;bottom:-12px;height:14px;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.7),rgba(0,0,0,0))}
+.pl-turn{width:100%;height:100%;animation:plTurn 1.25s cubic-bezier(.22,.9,.32,1) both}
+.pl-wheel{display:block;width:100%;height:100%;animation:plSpin 1.1s linear infinite}
+.pl-road{position:absolute;left:0;right:0;top:140px;height:4px;overflow:hidden;border-radius:4px;-webkit-mask:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent);mask:linear-gradient(90deg,transparent,#000 22%,#000 78%,transparent)}
+.pl-road i{display:block;width:calc(100% + 48px);height:100%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.4) 0 24px,transparent 24px 48px);animation:plRoad .15s linear infinite}
+.pl-brand{font-weight:900;font-size:30px;letter-spacing:-.03em;animation:plUp .7s cubic-bezier(.2,.8,.2,1) .35s both}
+.pl-brand b{margin-left:3px;padding:0 8px 2px;border-radius:10px;background:#e31e24;color:#fff;font-weight:900}
+.pl-bar{width:190px;height:3px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden;animation:plUp .7s cubic-bezier(.2,.8,.2,1) .45s both}
+.pl-bar i{display:block;height:100%;background:#e31e24;transform-origin:left;transform:scaleX(0);transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.pl-note{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8e8e99;animation:plUp .7s cubic-bezier(.2,.8,.2,1) .55s both}
+.pl-out .pl-roll{animation:plOut .75s cubic-bezier(.55,0,.75,.2) forwards}
+@keyframes plIn{from{transform:translateX(-68vw)}}
+@keyframes plTurn{from{transform:rotate(-900deg)}}
+@keyframes plSpin{to{transform:rotate(360deg)}}
+@keyframes plOut{to{transform:translateX(72vw) rotate(540deg)}}
+@keyframes plRoad{to{transform:translateX(-48px)}}
+@keyframes plUp{from{opacity:0;transform:translateY(14px)}}
+@keyframes plSafe{to{opacity:0;visibility:hidden}}
+@media (prefers-reduced-motion:reduce){.pl-roll,.pl-turn,.pl-wheel,.pl-road i{animation:none}}
+</style>
+<script>
+  document.documentElement.className += ' js';
+  window.__msCss = function () { window.__msCssOk = true; };
+</script>
+<!-- Основные стили грузятся без блокировки отрисовки: пока они качаются, крутится прелоадер -->
+<link rel="preload" href="assets/css/style.css" as="style" onload="this.onload=null;this.rel='stylesheet';__msCss()">
+<noscript><link rel="stylesheet" href="assets/css/style.css"><style>.pl{display:none}</style></noscript>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"AutoPartsStore","name":"MASTERSHINA","url":"https://mastershina.uz/","telephone":"+998998579911","email":"info@mastershina.uz","foundingDate":"2010","address":{"@type":"PostalAddress","streetAddress":"ул. Узумзор, 37, Сергелийский р-н","addressLocality":"Ташкент","addressCountry":"UZ"},"geo":{"@type":"GeoCoordinates","latitude":41.239976,"longitude":69.218037},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"09:00","closes":"20:00"}],"brand":["ROADONE","CETROC","HENGTAR","SULTAN"]}
+</script>
+</head>
+<body>
+
+<!-- ===== Прелоадер: колесо закатывается, крутится, пока грузится сайт, и укатывается ===== -->
+<div class="pl" id="pl" aria-hidden="true">
+  <div class="pl-stage">
+    <div class="pl-roll"><div class="pl-turn">
+      <svg class="pl-wheel" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="58" fill="#1c1c21"/>
+        <circle cx="60" cy="60" r="55" fill="none" stroke="#09090b" stroke-width="6" stroke-dasharray="7 5.5"/>
+        <circle cx="60" cy="60" r="44" fill="#26262d"/>
+        <circle cx="60" cy="60" r="34" fill="#e31e24"/>
+        <circle cx="60" cy="60" r="29" fill="none" stroke="#b5141a" stroke-width="2"/>
+        <g fill="#111114"><circle cx="60" cy="40" r="5.5"/><circle cx="77.3" cy="50" r="5.5"/><circle cx="77.3" cy="70" r="5.5"/><circle cx="60" cy="80" r="5.5"/><circle cx="42.7" cy="70" r="5.5"/><circle cx="42.7" cy="50" r="5.5"/></g>
+        <circle cx="60" cy="60" r="11" fill="#f4f4f6"/>
+        <g fill="#e31e24"><circle cx="60" cy="53.5" r="1.8"/><circle cx="66.2" cy="58" r="1.8"/><circle cx="63.8" cy="65.3" r="1.8"/><circle cx="56.2" cy="65.3" r="1.8"/><circle cx="53.8" cy="58" r="1.8"/></g>
+        <circle cx="60" cy="60" r="3" fill="#111114"/>
+        <path d="M24 38a42 42 0 0 1 22-18" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div></div>
+    <div class="pl-road"><i></i></div>
+  </div>
+  <div class="pl-brand">MASTER<b>SHINA</b></div>
+  <div class="pl-bar"><i id="plBar"></i></div>
+  <div class="pl-note">шины · диски · запчасти</div>
+</div>
+<script>
+/* Прелоадер прячется, когда одновременно:
+   1) колесо успело закатиться (MIN), 2) загружены стили и разметка,
+   3) готов первый экран: шрифты и картинки с data-critical (или вся страница) —
+      либо прошло MAX: на медленном интернете дольше не держим, остальное догрузится.
+   HARD — аварийный предел. На повторных заходах в течение сессии анимация короче. */
+(function () {
+  var d = document.documentElement, pl = document.getElementById('pl'), bar = document.getElementById('plBar');
+  var now = function () { return window.performance && performance.now ? performance.now() : Date.now() - t0; }, t0 = Date.now();
+  var reduced = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches, seen = false;
+  try { seen = sessionStorage.getItem('ms_pl') === '1'; } catch (e) {}
+  var MIN = reduced ? 300 : seen ? 1300 : 2300, MAX = 7000, HARD = 12000;
+  var loaded = false, dom = false, done = false, fonts = !document.fonts;
+  addEventListener('load', function () { loaded = true; });
+  document.addEventListener('DOMContentLoaded', function () { dom = true; });
+  if (document.fonts) document.fonts.ready.then(function () { fonts = true; });
+  function heroReady() {
+    var imgs = document.querySelectorAll('img[data-critical]');
+    for (var i = 0; i < imgs.length; i++) if (!imgs[i].complete) return false;
+    return fonts && imgs.length > 0;
+  }
+  var timer = setInterval(function () {
+    var t = now(), css = !!window.__msCssOk, ready = loaded || (dom && heroReady());
+    bar.style.transform = 'scaleX(' + (ready && css ? .96 : .9 * (1 - Math.exp(-t / 1400))) + ')';
+    if (t >= HARD || (css && dom && t >= MIN && (ready || t >= MAX))) finish();
+  }, 100);
+  function finish() {
+    if (done) return; done = true; clearInterval(timer);
+    bar.style.transform = 'scaleX(1)';
+    try { sessionStorage.setItem('ms_pl', '1'); } catch (e) {}
+    setTimeout(function () {
+      pl.classList.add('pl-out');
+      d.classList.add('is-ready');
+      document.dispatchEvent(new Event('ms:ready'));
+      setTimeout(function () { pl.parentNode && pl.parentNode.removeChild(pl); }, 1100);
+    }, 280);
+  }
+})();
+</script>
+
+<!-- ===== Иконки ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></symbol>
+  <symbol id="i-insta" viewBox="0 0 24 24"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.48 12.89 17 22l-5-3-5 3 1.52-9.11"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-percent" viewBox="0 0 24 24"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
+  <symbol id="i-tire" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></symbol>
+  <!-- силуэты техники для калькулятора -->
+  <symbol id="v-dump" viewBox="0 0 48 28"><path d="M4 18v-7l3.5-5H14v12"/><path d="M16 18V7h22l6 6v5"/><path d="M2 18h44"/><circle cx="9" cy="22" r="3.5"/><circle cx="29" cy="22" r="3.5"/><circle cx="38" cy="22" r="3.5"/></symbol>
+  <symbol id="v-tractor" viewBox="0 0 48 28"><path d="M4 18V8a2 2 0 0 1 2-2h8l3 5v7"/><path d="M7 10.5h6"/><path d="M2 18h40"/><path d="M24 14.5h13"/><circle cx="10" cy="22" r="3.5"/><circle cx="29" cy="22" r="3.5"/><circle cx="37" cy="22" r="3.5"/></symbol>
+  <symbol id="v-light" viewBox="0 0 48 28"><path d="M4 18v-6l4-5h7v11"/><rect x="17" y="5" width="27" height="13" rx="1.5"/><path d="M2 18h43"/><circle cx="10" cy="22" r="3.5"/><circle cx="36" cy="22" r="3.5"/></symbol>
+  <symbol id="v-loader" viewBox="0 0 48 28"><path d="M5 19v-6h21v6"/><path d="M11 13V4h11l3 9"/><path d="M32 2v20"/><path d="M32 21h12"/><path d="M26 8h6"/><circle cx="11" cy="22" r="3.5"/><circle cx="23" cy="22" r="3.5"/></symbol>
+  <symbol id="v-backhoe" viewBox="0 0 48 28"><path d="M12 19v-7h19v7"/><path d="M15 12V5h9l2 7"/><path d="M31 13h5l5 7h-8"/><path d="M12 14 6 6l-4 5 2 5"/><circle cx="16" cy="22" r="3.5"/><circle cx="27" cy="22" r="3.5"/></symbol>
+  <symbol id="v-wheel" viewBox="0 0 48 28"><path d="M5 19v-6h22v6"/><path d="M8 13V5h10v8"/><path d="m27 14 8-6"/><path d="M35 5h8l-2 11h-7z"/><circle cx="11" cy="22" r="4"/><circle cx="24" cy="22" r="4"/></symbol>
+</svg>
+
+<div class="site">
+
+<!-- ===== Верхняя строка ===== -->
+<div class="topline">
+  <div class="container topline-in">
+    <span class="city"><svg class="i"><use href="#i-pin"/></svg>Ташкент</span>
+    <nav class="topline-nav" aria-label="Разделы"><a href="#calc">Калькулятор</a><a href="#catalog">Каталог</a><a href="#about">О компании</a><a href="#brands">Бренды</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a></nav>
+    <div class="topline-right">
+      <a href="tel:555111777" class="tl-phone"><b>555 111 777</b><small>Пн–Пт 09:00–20:00</small></a>
+      <button type="button" class="tl-call" data-callback>Заказать звонок</button>
+      <span class="lang"><b>RU</b><span>UZ</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== Шапка ===== -->
+<header class="header">
+  <div class="container header-in">
+    <a href="#top" class="logo" aria-label="MASTERSHINA — на главную">
+      <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#111114"/><circle cx="24" cy="24" r="19" fill="none" stroke="#34343c" stroke-width="5" stroke-dasharray="3.4 2.6"/><circle cx="24" cy="24" r="12.5" fill="#e31e24"/><g fill="#111114"><circle cx="24" cy="16" r="1.9"/><circle cx="31.6" cy="21.5" r="1.9"/><circle cx="28.7" cy="30.5" r="1.9"/><circle cx="19.3" cy="30.5" r="1.9"/><circle cx="16.4" cy="21.5" r="1.9"/></g><circle cx="24" cy="24" r="4.2" fill="#fff"/></svg>
+      <span class="logo-text">MASTER<b>SHINA</b></span>
+    </a>
+    <div class="mega-wrap">
+      <button type="button" class="catalog-btn" aria-expanded="false" aria-controls="mega"><span class="cb-ico"><i></i><i></i><i></i></span>Каталог</button>
+      <div class="mega" id="mega" aria-hidden="true">
+        <a href="#catalog" data-filter="truck" class="mega-item m-dark"><img data-src="assets/img/products/gd08.webp" alt="" decoding="async"><b>Грузовые шины</b><span>ROADONE, CETROC, KAPSEN</span></a>
+        <a href="#catalog" data-filter="special" class="mega-item m-red"><img data-src="assets/img/products/r43.webp" alt="" decoding="async"><b>Спецтехника</b><span>HENGTAR · погрузчики</span></a>
+        <a href="#catalog" data-filter="rims" class="mega-item m-light"><img data-src="assets/img/products/sultan900.webp" alt="" decoding="async"><b>Диски</b><span>SULTAN, BEITER</span></a>
+        <a href="#catalog" data-filter="parts" class="mega-item m-tint"><img data-src="assets/img/products/castrol.webp" alt="" decoding="async"><b>Запчасти и масла</b><span>HOWO, SHACMAN, XCMG</span></a>
+      </div>
+    </div>
+    <div class="search" role="search">
+      <svg class="i"><use href="#i-search"/></svg>
+      <input type="search" placeholder="Поиск: 9.00 R20, HENGTAR, диск…" aria-label="Поиск по каталогу" autocomplete="off">
+      <div class="search-drop" hidden></div>
+    </div>
+    <div class="header-icons">
+      <button type="button" class="hi hi-search" aria-label="Поиск"><svg class="i"><use href="#i-search"/></svg><span>Поиск</span></button>
+      <button type="button" class="hi hi-fav" aria-label="Избранное"><svg class="i"><use href="#i-heart"/></svg><em data-fav-count class="is-empty">0</em><span>Избранное</span></button>
+      <button type="button" class="hi" data-cart-open aria-label="Корзина"><svg class="i"><use href="#i-cart"/></svg><em data-cart-count class="is-empty">0</em><span>Корзина</span></button>
+      <button type="button" class="hi burger" aria-label="Меню" aria-controls="mnav"><svg class="i"><use href="#i-menu"/></svg><span>Меню</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- мобильное меню -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <div class="mnav-box">
+    <div class="mnav-top"><span class="logo-text">MASTER<b>SHINA</b></span><button class="mnav-x" type="button" aria-label="Закрыть меню"><svg class="i"><use href="#i-x"/></svg></button></div>
+    <nav class="mnav-cats">
+      <a href="#catalog" data-filter="truck"><img data-src="assets/img/products/gd800.webp" alt="">Грузовые шины</a>
+      <a href="#catalog" data-filter="special"><img data-src="assets/img/products/r42.webp" alt="">Спецтехника</a>
+      <a href="#catalog" data-filter="rims"><img data-src="assets/img/products/sultan1175.webp" alt="">Диски</a>
+      <a href="#catalog" data-filter="parts"><img data-src="assets/img/products/atlant.webp" alt="">Запчасти</a>
+    </nav>
+    <nav class="mnav-links">
+      <a href="#calc"><svg class="i"><use href="#i-calc"/></svg>Калькулятор комплекта</a>
+      <a href="#about"><svg class="i"><use href="#i-award"/></svg>О компании</a>
+      <a href="#brands"><svg class="i"><use href="#i-layers"/></svg>Бренды</a>
+      <a href="#faq"><svg class="i"><use href="#i-help"/></svg>Частые вопросы</a>
+      <a href="#contacts"><svg class="i"><use href="#i-pin"/></svg>Карта и контакты</a>
+    </nav>
+    <a href="tel:555111777" class="btn btn-red btn-block"><svg class="i"><use href="#i-phone"/></svg>555 111 777</a>
+    <p class="mnav-note">Пн–Пт 09:00–20:00 · Ташкент, Сергели</p>
+  </div>
+</div>
+
+<main id="top">
+
+<!-- ===== Первый экран: баннер + калькулятор ===== -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="banner" aria-roledescription="карусель" aria-label="Акции и предложения">
+      <div class="banner-track">
+        <article class="bslide b-dark is-active">
+          <div class="bslide-txt">
+            <span class="pill"><svg class="i"><use href="#i-award"/></svg>Официальный дистрибьютор</span>
+            <h1>Грузовые шины <mark>ROADONE</mark> со склада в&nbsp;Ташкенте</h1>
+            <p>Официальный дистрибьютор ROADONE и CETROC в Узбекистане. Отгрузка в день заказа, доставка по всей стране.</p>
+            <div class="bslide-cta"><a href="#catalog" data-filter="truck" class="btn btn-red">Выбрать шины <svg class="i"><use href="#i-arrow"/></svg></a><span class="price-tag">от <b>1 450 000</b> сум</span></div>
+          </div>
+          <div class="bslide-art">
+            <span class="blob"></span>
+            <img src="assets/img/products/rf02.webp" alt="" class="t t-back" width="288" height="503" decoding="async" data-critical>
+            <div class="t t-front"><img src="assets/img/products/gd800.webp" alt="Шина ROADONE GD800" class="t-img" width="279" height="477" fetchpriority="high" data-critical></div>
+            <span class="sticker s1">в наличии<br><b>9.00 R20</b></span>
+          </div>
+        </article>
+        <article class="bslide b-red">
+          <div class="bslide-txt">
+            <span class="pill"><svg class="i"><use href="#i-shield"/></svg>Спецтехника</span>
+            <h2>Шины HENGTAR, которые <mark>не боятся</mark> проколов</h2>
+            <p>Цельнолитые и пневматические шины для погрузчиков, экскаваторов и карьерной техники.</p>
+            <div class="bslide-cta"><a href="#catalog" data-filter="special" class="btn btn-dark">Смотреть спецшины <svg class="i"><use href="#i-arrow"/></svg></a><span class="price-tag">от <b>1 250 000</b> сум</span></div>
+          </div>
+          <div class="bslide-art">
+            <span class="blob"></span>
+            <img data-src="assets/img/products/hd101.webp" alt="" class="t t-back" width="325" height="452" decoding="async">
+            <div class="t t-front"><img data-src="assets/img/products/e3l3.webp" alt="Шина HENGTAR E3/L3A" class="t-img" width="374" height="461" decoding="async"></div>
+            <span class="sticker s1">новинка<br><b>16/70-20</b></span>
+          </div>
+        </article>
+        <article class="bslide b-light">
+          <div class="bslide-txt">
+            <span class="pill"><svg class="i"><use href="#i-tire"/></svg>Диски</span>
+            <h2>Диски SULTAN для грузовиков — <mark>в наличии</mark></h2>
+            <p>Стальные диски R19.5 и R22.5 для бескамерных шин. Большой ассортимент и доступные цены.</p>
+            <div class="bslide-cta"><a href="#catalog" data-filter="rims" class="btn btn-red">Выбрать диски <svg class="i"><use href="#i-arrow"/></svg></a><span class="price-tag">от <b>1 550 000</b> сум</span></div>
+          </div>
+          <div class="bslide-art">
+            <span class="blob"></span>
+            <img data-src="assets/img/products/sultan900.webp" alt="" class="t t-back t-rim" width="430" height="418" decoding="async">
+            <div class="t t-front t-front-rim"><img data-src="assets/img/products/sultan1175.webp" alt="Диск SULTAN 11.75 R22.5" class="t-img" width="415" height="410" decoding="async"></div>
+            <span class="sticker s1">R22.5<br><b>10 отверстий</b></span>
+          </div>
+        </article>
+        <article class="bslide b-split">
+          <div class="bslide-txt">
+            <span class="pill"><svg class="i"><use href="#i-percent"/></svg>Оптом и в рассрочку</span>
+            <h2>Комплект сейчас — <mark>платите частями</mark></h2>
+            <p>Оптовые цены для автопарков от 4 шин. Рассрочка без поездок в банк — оформим за один визит.</p>
+            <div class="bslide-cta"><a href="#calc" class="btn btn-white">Рассчитать комплект <svg class="i"><use href="#i-calc"/></svg></a><button type="button" class="link-light" data-callback="Оптовый прайс">Оптовый прайс</button></div>
+          </div>
+          <div class="bslide-art">
+            <span class="blob"></span>
+            <img data-src="assets/img/products/ra85.webp" alt="" class="t t-back" width="272" height="484" decoding="async">
+            <div class="t t-front"><img data-src="assets/img/products/gd08.webp" alt="Шина ROADONE GD08" class="t-img" width="276" height="486" decoding="async"></div>
+            <span class="sticker s1">рассрочка<br><b>до 12 мес</b></span>
+          </div>
+        </article>
+      </div>
+      <div class="banner-nav">
+        <button type="button" class="bn-arrow" data-bprev aria-label="Предыдущий слайд"><svg class="i"><use href="#i-arrow-l"/></svg></button>
+        <div class="bn-dots"><button type="button" class="is-active" aria-label="Слайд 1"><i></i></button><button type="button" aria-label="Слайд 2"><i></i></button><button type="button" aria-label="Слайд 3"><i></i></button><button type="button" aria-label="Слайд 4"><i></i></button></div>
+        <button type="button" class="bn-arrow" data-bnext aria-label="Следующий слайд"><svg class="i"><use href="#i-arrow"/></svg></button>
+      </div>
+    </div>
+
+    <!-- Калькулятор комплекта -->
+    <form class="calc" id="calc" aria-labelledby="calc-title" novalidate>
+      <div class="calc-head">
+        <h2 class="calc-title" id="calc-title"><svg class="i"><use href="#i-calc"/></svg>Калькулятор комплекта</h2>
+        <span class="calc-badge">+ рассрочка</span>
+      </div>
+
+      <div class="calc-label">1. Ваша техника</div>
+      <div class="veh" role="radiogroup" aria-label="Тип техники">
+        <button type="button" role="radio" aria-checked="true" data-veh="dump"><svg class="vi"><use href="#v-dump"/></svg><b>Самосвал</b><small>6×4</small></button>
+        <button type="button" role="radio" aria-checked="false" data-veh="tractor"><svg class="vi"><use href="#v-tractor"/></svg><b>Тягач</b><small>4×2</small></button>
+        <button type="button" role="radio" aria-checked="false" data-veh="light"><svg class="vi"><use href="#v-light"/></svg><b>Грузовик</b><small>ISUZU, GAZ</small></button>
+        <button type="button" role="radio" aria-checked="false" data-veh="loader"><svg class="vi"><use href="#v-loader"/></svg><b>Погрузчик</b><small>вилочный</small></button>
+        <button type="button" role="radio" aria-checked="false" data-veh="backhoe"><svg class="vi"><use href="#v-backhoe"/></svg><b>Экскаватор</b><small>-погрузчик</small></button>
+        <button type="button" role="radio" aria-checked="false" data-veh="wheel"><svg class="vi"><use href="#v-wheel"/></svg><b>Фронтальный</b><small>погрузчик</small></button>
+      </div>
+
+      <div class="axles" aria-hidden="true">
+        <svg class="axles-svg" viewBox="0 0 220 60" preserveAspectRatio="xMinYMid meet"></svg>
+        <div class="axles-n"><b data-tires>10</b><span data-tires-word>шин<br>на технику</span></div>
+      </div>
+
+      <div class="calc-label">2. Шина и количество</div>
+      <div class="calc-row">
+        <label class="field field-model">
+          <span class="fm-img"><img data-calc-img src="assets/img/products/gd800.webp" alt="" width="279" height="477" data-critical></span>
+          <span class="fm-txt"><span>Модель · размер</span><select name="model" aria-label="Модель шины"></select></span>
+        </label>
+        <div class="qty">
+          <button type="button" data-qty="-1" aria-label="Меньше шин"><svg class="i"><use href="#i-minus"/></svg></button>
+          <output data-qty-out aria-live="polite">10</output>
+          <button type="button" data-qty="1" aria-label="Больше шин"><svg class="i"><use href="#i-plus"/></svg></button>
+        </div>
+      </div>
+
+      <div class="calc-label">3. Монтаж и оплата</div>
+      <div class="calc-opts">
+        <label class="chk"><input type="checkbox" name="mount" checked><i></i><span>Шиномонтаж <small data-mount-price></small></span></label>
+        <div class="seg" role="radiogroup" aria-label="Способ оплаты">
+          <button type="button" role="radio" aria-checked="true" data-term="0">Сразу</button>
+          <button type="button" role="radio" aria-checked="false" data-term="3">3 мес</button>
+          <button type="button" role="radio" aria-checked="false" data-term="6">6 мес</button>
+          <button type="button" role="radio" aria-checked="false" data-term="12">12 мес</button>
+        </div>
+      </div>
+
+      <div class="calc-res">
+        <div class="calc-sum">
+          <span data-res-label>Итого</span>
+          <b data-total>0 сум</b>
+          <small class="calc-sub" data-res-sub hidden></small>
+        </div>
+        <div class="calc-cta">
+          <button type="button" class="btn btn-red" data-calc-add><svg class="i"><use href="#i-cart"/></svg>В корзину</button>
+          <button type="button" class="btn-ico" data-calc-ask aria-label="Отправить расчёт менеджеру" title="Отправить расчёт менеджеру"><svg class="i"><use href="#i-phone"/></svg></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ===== Бегущие ленты ===== -->
+<div class="strips" aria-hidden="true">
+  <div class="strip strip-dark"><div class="strip-track">
+    <span>ROADONE</span><i></i><span>CETROC</span><i></i><span>HENGTAR</span><i></i><span>SULTAN</span><i></i><span>KAPSEN</span><i></i><span>ADVANCE</span><i></i><span>PROTYRE</span><i></i><span>BEITER</span><i></i>
+    <span>ROADONE</span><i></i><span>CETROC</span><i></i><span>HENGTAR</span><i></i><span>SULTAN</span><i></i><span>KAPSEN</span><i></i><span>ADVANCE</span><i></i><span>PROTYRE</span><i></i><span>BEITER</span><i></i>
+  </div></div>
+  <div class="strip strip-red"><div class="strip-track">
+    <span>9.00 R20</span><i></i><span>8.25 R16LT</span><i></i><span>7.50 R16LT</span><i></i><span>11.75 R22.5</span><i></i><span>16/70-20</span><i></i><span>19.5L-24</span><i></i><span>10.5/80-18</span><i></i><span>7.00-12</span><i></i><span>12.00 R20</span><i></i>
+    <span>9.00 R20</span><i></i><span>8.25 R16LT</span><i></i><span>7.50 R16LT</span><i></i><span>11.75 R22.5</span><i></i><span>16/70-20</span><i></i><span>19.5L-24</span><i></i><span>10.5/80-18</span><i></i><span>7.00-12</span><i></i><span>12.00 R20</span><i></i>
+  </div></div>
+</div>
+
+<!-- ===== Каталог категорий ===== -->
+<section class="section section-tight" id="categories">
+  <div class="container">
+    <div class="head-row" data-reveal><h2 class="h2">Каталог</h2><span class="muted">Шины · диски · запчасти · 8 брендов</span></div>
+    <div class="cats">
+      <a href="#catalog" data-filter="truck" class="cat c-dark" data-reveal>
+        <div class="cat-txt"><span class="cat-count" data-cat-count="truck"></span><h3>Грузовые шины</h3><span class="cat-tags"><i>Рулевые</i><i>Ведущие</i><i>Универсальные</i></span></div>
+        <img src="assets/img/products/gd800.webp" alt="" width="279" height="477" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a href="#catalog" data-filter="special" class="cat c-red" data-reveal data-delay="80">
+        <div class="cat-txt"><span class="cat-count" data-cat-count="special"></span><h3>Спецтехника</h3><span class="cat-tags"><i>Погрузчики</i><i>Карьер</i></span></div>
+        <img src="assets/img/products/r42.webp" alt="" width="346" height="477" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a href="#catalog" data-filter="rims" class="cat c-light" data-reveal data-delay="160">
+        <div class="cat-txt"><span class="cat-count" data-cat-count="rims"></span><h3>Диски</h3><span class="cat-tags"><i>R19.5</i><i>R20</i><i>R22.5</i></span></div>
+        <img src="assets/img/products/beiter1200.webp" alt="" class="cat-img-rim" width="424" height="420" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      </a>
+      <a href="#catalog" data-filter="parts" class="cat c-tint" data-reveal data-delay="240">
+        <div class="cat-txt"><span class="cat-count" data-cat-count="parts"></span><h3>Запчасти и масла</h3><span class="cat-tags"><i>HOWO</i><i>SHACMAN</i><i>XCMG</i></span></div>
+        <img src="assets/img/products/atlant.webp" alt="" class="cat-img-wide" width="529" height="313" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Витрина продукции ===== -->
+<section class="section section-soft" id="catalog">
+  <div class="container">
+    <div class="head-row" data-reveal>
+      <h2 class="h2">Витрина продукции</h2>
+      <div class="chips" role="tablist" aria-label="Фильтр витрины">
+        <button type="button" role="tab" class="is-active" data-tab="all">Все</button>
+        <button type="button" role="tab" data-tab="truck">Грузовые</button>
+        <button type="button" role="tab" data-tab="special">Спецтехника</button>
+        <button type="button" role="tab" data-tab="rims">Диски</button>
+        <button type="button" role="tab" data-tab="parts">Запчасти</button>
+      </div>
+    </div>
+    <div class="filter-note" hidden></div>
+    <div class="carousel">
+      <button type="button" class="car-arrow car-prev" aria-label="Прокрутить назад"><svg class="i"><use href="#i-arrow-l"/></svg></button>
+      <div class="products" data-grid></div>
+      <button type="button" class="car-arrow car-next" aria-label="Прокрутить вперёд"><svg class="i"><use href="#i-arrow"/></svg></button>
+    </div>
+    <div class="car-bar" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<!-- ===== О компании ===== -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="head-row" data-reveal><h2 class="h2">О компании</h2><span class="muted">Шины и запчасти для бизнеса с 2010 года</span></div>
+    <div class="bento">
+      <div class="b-card b-intro" data-reveal>
+        <span class="pill pill-red">с 2010 года</span>
+        <h3>MASTERSHINA — надёжный партнёр в мире шин и запчастей</h3>
+        <p>Обеспечиваем бизнес и автопарки Узбекистана шинами, дисками и запчастями для коммерческого транспорта. Официальный дистрибьютор ROADONE (группа Sailun) и CETROC.</p>
+        <p>Два шоурума и большой современный склад в Ташкенте — нужные размеры всегда в наличии. Опытные механики и сервис на одной площадке.</p>
+        <a href="#contacts" class="btn btn-dark">Приехать в шоурум <svg class="i"><use href="#i-arrow"/></svg></a>
+      </div>
+      <div class="b-card b-photo b-team" data-reveal data-delay="80"><img src="assets/img/company/team.webp" alt="Команда MASTERSHINA" width="1000" height="666" loading="lazy" decoding="async"><span class="sticker sticker-r">наша команда</span></div>
+      <div class="b-card b-num k-red" data-reveal data-delay="120"><b><span data-count="16" data-years>0</span>+</b><span>лет на рынке шин Узбекистана</span></div>
+      <div class="b-card b-num k-dark" data-reveal data-delay="160"><b><span data-count="3">0</span></b><span>шоурума и склад в Сергелийском районе</span></div>
+      <div class="b-card b-photo b-wh" data-reveal data-delay="200"><img src="assets/img/company/warehouse.webp" alt="Склад шин MASTERSHINA" width="1000" height="666" loading="lazy" decoding="async"><span class="sticker">склад в Ташкенте</span></div>
+      <div class="b-card b-num k-light" data-reveal data-delay="240"><b><span data-count="8">0</span></b><span>брендов шин и дисков: ROADONE, CETROC, KAPSEN, HENGTAR, SULTAN…</span></div>
+      <div class="b-card b-num k-tint" data-reveal data-delay="280"><b><span data-count="5">0</span></b><span>марок техники по запчастям: HOWO, SHACMAN, XCMG, Zoomlion, MAN</span></div>
+    </div>
+    <div class="whys">
+      <div class="why" data-reveal><span class="why-ico"><svg class="i"><use href="#i-shield"/></svg></span><div><h3>Оригинал и гарантия</h3><p>Прямые поставки от производителей, гарантия бренда на каждую шину.</p></div></div>
+      <div class="why" data-reveal data-delay="60"><span class="why-ico"><svg class="i"><use href="#i-zap"/></svg></span><div><h3>Отгрузка сегодня</h3><p>Ходовые размеры на складе в Ташкенте — забирайте в день заказа.</p></div></div>
+      <div class="why" data-reveal data-delay="120"><span class="why-ico"><svg class="i"><use href="#i-wallet"/></svg></span><div><h3>Рассрочка и опт</h3><p>Платите частями, а для автопарков — оптовые цены от 4 шин.</p></div></div>
+      <div class="why" data-reveal data-delay="180"><span class="why-ico"><svg class="i"><use href="#i-truck"/></svg></span><div><h3>Доставка по стране</h3><p>По Ташкенту — в день заказа, в регионы — надёжными перевозчиками.</p></div></div>
+      <div class="why" data-reveal data-delay="240"><span class="why-ico"><svg class="i"><use href="#i-wrench"/></svg></span><div><h3>Свой сервис</h3><p>Шиномонтаж, замена масла, ремонт подвески и сварка на одной площадке.</p></div></div>
+      <div class="why" data-reveal data-delay="300"><span class="why-ico"><svg class="i"><use href="#i-layers"/></svg></span><div><h3>Запчасти для техники</h3><p>HOWO, SHACMAN, XCMG, Zoomlion, MAN — всё под рукой, без долгих поисков.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Популярные бренды ===== -->
+<section class="section section-soft" id="brands">
+  <div class="container">
+    <div class="head-row" data-reveal><h2 class="h2">Популярные бренды</h2><span class="muted">Нажмите на бренд — покажем товары</span></div>
+    <div class="brand-wall">
+      <button type="button" class="brand brand-top" data-brand="ROADONE" data-reveal><span class="brand-badge">офиц<span class="bb-full">иальный</span><span class="bb-short">.</span> дистрибьютор</span><b class="brand-name">ROADONE</b><small>Грузовые шины · группа Sailun</small><span class="brand-go"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+      <button type="button" class="brand brand-top" data-brand="CETROC" data-reveal data-delay="50"><span class="brand-badge">офиц<span class="bb-full">иальный</span><span class="bb-short">.</span> дистрибьютор</span><b class="brand-name">CETROC</b><small>Грузовые шины</small><span class="brand-go"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+      <button type="button" class="brand" data-brand="HENGTAR" data-reveal data-delay="100"><b class="brand-name">HENGTAR</b><small>Шины для спецтехники</small><span class="brand-go"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+      <button type="button" class="brand" data-brand="SULTAN" data-reveal data-delay="150"><b class="brand-name">SULTAN</b><small>Диски для грузовиков</small><span class="brand-go"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+      <button type="button" class="brand" data-brand="KAPSEN" data-reveal data-delay="200"><b class="brand-name">KAPSEN</b><small>Грузовые шины</small><span class="brand-go"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+      <button type="button" class="brand" data-brand="ADVANCE" data-reveal data-delay="250"><b class="brand-name">ADVANCE</b><small>Грузовые и индустриальные шины</small><span class="brand-go"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+      <button type="button" class="brand" data-brand="PROTYRE" data-reveal data-delay="300"><b class="brand-name">PROTYRE</b><small>Грузовые шины</small><span class="brand-go"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+      <button type="button" class="brand" data-brand="BEITER" data-reveal data-delay="350"><b class="brand-name">BEITER</b><small>Диски для самосвалов</small><span class="brand-go"><svg class="i"><use href="#i-arrow"/></svg></span></button>
+    </div>
+    <div class="parts-for" data-reveal>
+      <span>Запчасти для техники:</span>
+      <button type="button" data-brand="HOWO">HOWO</button><button type="button" data-brand="SHACMAN">SHACMAN</button><button type="button" data-brand="XCMG">XCMG</button><button type="button" data-brand="Zoomlion">Zoomlion</button><button type="button" data-brand="MAN">MAN</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Частые вопросы ===== -->
+<section class="section" id="faq">
+  <div class="container faq-grid">
+    <div class="faq-side" data-reveal>
+      <h2 class="h2">Частые вопросы</h2>
+      <p class="muted faq-sub">Собрали ответы на то, что у нас спрашивают чаще всего.</p>
+      <div class="ask">
+        <b>Не нашли ответ?</b>
+        <p>Позвоните или напишите в Telegram — ответим за 15 минут в рабочее время.</p>
+        <div class="ask-btns">
+          <a href="tel:555111777" class="btn btn-red"><svg class="i"><use href="#i-phone"/></svg>555 111 777</a>
+          <a href="https://t.me/AUTO777CENTERuz" target="_blank" rel="noopener" class="btn btn-ghost"><svg class="i"><use href="#i-send"/></svg>Telegram</a>
+        </div>
+      </div>
+    </div>
+    <div class="faq">
+      <details data-reveal open><summary>Как подобрать размер шины?</summary><div class="faq-a"><p>Размер указан на боковине шины, например 9.00 R20 или 315/80 R22.5. Пришлите фото боковины в Telegram — менеджер подберёт подходящую модель и аналоги в наличии. Посчитать комплект на вашу технику можно в калькуляторе вверху страницы.</p></div></details>
+      <details data-reveal><summary>Можно ли купить в рассрочку?</summary><div class="faq-a"><p>Да, шины, диски и запчасти можно оформить в рассрочку — в шоуруме или онлайн при оформлении заказа. Примерный ежемесячный платёж показывает калькулятор комплекта.</p></div></details>
+      <details data-reveal><summary>Какие способы оплаты доступны?</summary><div class="faq-a"><p>Payme, Click, Uzum, банковские карты UzCard, HUMO и Visa, наличные в шоуруме, а для компаний — перечисление по счёту.</p></div></details>
+      <details data-reveal><summary>Есть ли оптовые цены для автопарков?</summary><div class="faq-a"><p>Да. Для перевозчиков, автопарков и строительных компаний — оптовые цены от 4 шин, персональный менеджер и отсрочка для постоянных клиентов.</p></div></details>
+      <details data-reveal><summary>Доставляете в регионы?</summary><div class="faq-a"><p>Да, отправляем по всему Узбекистану. По Ташкенту — доставка в день заказа.</p></div></details>
+      <details data-reveal><summary>Можно поставить шины сразу после покупки?</summary><div class="faq-a"><p>Да, на нашей площадке работает грузовой шиномонтаж: монтаж, балансировка и ремонт шин любых размеров. Там же меняем масло и ремонтируем подвеску.</p></div></details>
+      <details data-reveal><summary>Есть ли гарантия?</summary><div class="faq-a"><p>Мы официальный дистрибьютор ROADONE и CETROC — на продукцию действует гарантия производителя.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Карта и контакты ===== -->
+<section class="section section-soft" id="contacts">
+  <div class="container">
+    <div class="head-row" data-reveal><h2 class="h2">Карта и контакты</h2><span class="open-now" data-open-now></span></div>
+    <div class="contacts">
+      <div class="contacts-side">
+        <div class="shops" data-shops></div>
+        <div class="contact-card" data-reveal>
+          <a href="tel:555111777" class="cc-phone"><small>Колл-центр</small><b>555 111 777</b></a>
+          <div class="cc-row">
+            <a href="tel:+998998579911"><svg class="i"><use href="#i-phone"/></svg>+998 99 857-99-11</a>
+            <a href="mailto:info@mastershina.uz"><svg class="i"><use href="#i-mail"/></svg>info@mastershina.uz</a>
+          </div>
+          <div class="socials">
+            <a href="https://t.me/AUTO777CENTERuz" target="_blank" rel="noopener" aria-label="Telegram"><svg class="i"><use href="#i-send"/></svg></a>
+            <a href="https://instagram.com/auto777center.uz" target="_blank" rel="noopener" aria-label="Instagram"><svg class="i"><use href="#i-insta"/></svg></a>
+            <a href="https://facebook.com/auto777center.uz" target="_blank" rel="noopener" aria-label="Facebook"><svg class="i"><use href="#i-fb"/></svg></a>
+            <button type="button" class="btn btn-red" data-callback>Заказать звонок</button>
+          </div>
+        </div>
+      </div>
+      <!-- Карта подгружается, только когда до неё доскроллили (на медленном интернете — по кнопке) -->
+      <div class="map" data-map data-reveal data-src="https://yandex.uz/map-widget/v1/?ll=69.218037%2C41.239976&amp;z=15&amp;pt=69.218037%2C41.239976%2Cpm2rdl">
+        <div class="map-ph">
+          <span class="map-pin"><svg class="i"><use href="#i-pin"/></svg></span>
+          <b>Шоурум + склад</b>
+          <span>Ташкент, Сергелийский р-н, ул. Узумзор, 37</span>
+          <button type="button" class="btn btn-red map-load">Показать карту</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== Подвал ===== -->
+<footer class="footer">
+  <div class="container footer-in">
+    <div class="footer-brand">
+      <a href="#top" class="logo" aria-label="MASTERSHINA — наверх">
+        <svg class="logo-mark" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="22" fill="#fff"/><circle cx="24" cy="24" r="19" fill="none" stroke="#d6d6dc" stroke-width="5" stroke-dasharray="3.4 2.6"/><circle cx="24" cy="24" r="12.5" fill="#e31e24"/><g fill="#111114"><circle cx="24" cy="16" r="1.9"/><circle cx="31.6" cy="21.5" r="1.9"/><circle cx="28.7" cy="30.5" r="1.9"/><circle cx="19.3" cy="30.5" r="1.9"/><circle cx="16.4" cy="21.5" r="1.9"/></g><circle cx="24" cy="24" r="4.2" fill="#fff"/></svg>
+        <span class="logo-text">MASTER<b>SHINA</b></span>
+      </a>
+      <p>Шины, диски и запчасти для грузовиков и спецтехники. Официальный дистрибьютор ROADONE и CETROC в Узбекистане.</p>
+      <div class="socials">
+        <a href="https://t.me/AUTO777CENTERuz" target="_blank" rel="noopener" aria-label="Telegram"><svg class="i"><use href="#i-send"/></svg></a>
+        <a href="https://instagram.com/auto777center.uz" target="_blank" rel="noopener" aria-label="Instagram"><svg class="i"><use href="#i-insta"/></svg></a>
+        <a href="https://facebook.com/auto777center.uz" target="_blank" rel="noopener" aria-label="Facebook"><svg class="i"><use href="#i-fb"/></svg></a>
+      </div>
+    </div>
+    <div class="footer-col"><h4>Каталог</h4><a href="#catalog" data-filter="truck">Грузовые шины</a><a href="#catalog" data-filter="special">Шины для спецтехники</a><a href="#catalog" data-filter="rims">Диски</a><a href="#catalog" data-filter="parts">Запчасти и масла</a></div>
+    <div class="footer-col"><h4>Покупателям</h4><a href="#calc">Калькулятор комплекта</a><a href="#faq">Оплата и рассрочка</a><a href="#faq">Доставка</a><a href="#faq">Частые вопросы</a></div>
+    <div class="footer-col"><h4>Контакты</h4><a href="tel:555111777"><b>555 111 777</b></a><a href="tel:+998998579911">+998 99 857-99-11</a><a href="mailto:info@mastershina.uz">info@mastershina.uz</a><span>Ташкент, ул. Узумзор, 37</span><span>Пн–Пт 09:00–20:00</span></div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2010–<span data-year>2026</span> MASTERSHINA</span>
+    <span class="paylogos"><span class="pay pay-payme">pay<b>me</b></span><span class="pay pay-click">click</span><span class="pay pay-uzum">uzum</span><span class="pay">UZCARD</span><span class="pay">HUMO</span><span class="pay pay-visa">VISA</span></span>
+  </div>
+</footer>
+
+</div><!-- /.site -->
+
+<!-- Нижняя панель на телефоне -->
+<nav class="mbar" aria-label="Быстрое меню">
+  <a href="#categories"><svg class="i"><use href="#i-grid"/></svg><span>Каталог</span></a>
+  <a href="#calc"><svg class="i"><use href="#i-calc"/></svg><span>Расчёт</span></a>
+  <button type="button" data-cart-open><svg class="i"><use href="#i-cart"/></svg><em data-cart-count class="is-empty">0</em><span>Корзина</span></button>
+  <a href="tel:555111777" class="mbar-call"><svg class="i"><use href="#i-phone"/></svg><span>Звонок</span></a>
+</nav>
+
+<script src="assets/js/data.js" defer></script>
+<script src="assets/js/core.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
