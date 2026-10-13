@@ -107,6 +107,7 @@
   function count() { $('[data-found]', picker).textContent = matches().length; }
   function setVeh(v) {
     form.elements.vehicle.value = v;
+    form.elements.vehicle.dispatchEvent(new Event('change')); // без всплытия — только обновить свой список
     $$('.veh-icons button', picker).forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-veh') === v); });
     count();
   }
@@ -157,6 +158,78 @@
     goCatalog();
   });
   fillParams();
+
+  /* ---------- свой выпадающий список ----------
+     Раскрытый список у <select> рисует ОС, CSS его не стилизует. На компьютере
+     показываем свой список в стиле сайта, а <select> остаётся скрытым источником значения
+     (форма, события change и fillParams работают как раньше). На телефонах — родной
+     список: колесо iOS и шторка Android удобнее пальцем. */
+  var selects = [];
+  function closeSelects(except) { selects.forEach(function (s) { if (s !== except) s.open(false); }); }
+  function enhanceSelect(sel) {
+    var field = sel.closest('.field'), btn = document.createElement('button'), list = document.createElement('ul'), active = -1;
+    btn.type = 'button'; btn.className = 'sel-btn';
+    btn.setAttribute('aria-haspopup', 'listbox'); btn.setAttribute('aria-expanded', 'false');
+    list.className = 'sel-list'; list.id = 'sel-' + sel.name; list.setAttribute('role', 'listbox'); list.hidden = true;
+    btn.setAttribute('aria-controls', list.id);
+    sel.classList.add('sel-native'); sel.tabIndex = -1; sel.setAttribute('aria-hidden', 'true');
+    field.insertBefore(btn, field.firstChild); // первый элемент в <label> — клик по подписи откроет список
+    field.appendChild(list);
+    var api = {};
+    function items() { return $$('.sel-opt', list); }
+    function sync() {
+      var o = sel.options[sel.selectedIndex];
+      btn.textContent = o ? o.text : '';
+      items().forEach(function (li, i) { li.setAttribute('aria-selected', String(i === sel.selectedIndex)); });
+    }
+    function build() {
+      list.innerHTML = Array.prototype.map.call(sel.options, function (o, i) {
+        return '<li role="option" class="sel-opt' + (o.value ? '' : ' is-any') + '" data-i="' + i + '">' + o.text + '</li>';
+      }).join('');
+      sync();
+    }
+    function setActive(i) {
+      var li = items(); if (!li.length) return;
+      active = (i + li.length) % li.length;
+      li.forEach(function (x, k) { x.classList.toggle('is-active', k === active); });
+      li[active].scrollIntoView({ block: 'nearest' });
+    }
+    api.open = function (on) {
+      if (on === !list.hidden) return;
+      if (on) closeSelects(api);
+      list.hidden = !on; field.classList.toggle('is-open', on); btn.setAttribute('aria-expanded', String(on));
+      if (on) setActive(Math.max(sel.selectedIndex, 0));
+    };
+    function choose(i) {
+      if (i !== sel.selectedIndex) { sel.selectedIndex = i; sel.dispatchEvent(new Event('change', { bubbles: true })); }
+      sync(); api.open(false); btn.focus();
+    }
+    btn.addEventListener('click', function () { api.open(list.hidden); });
+    list.addEventListener('mousedown', function (e) { e.preventDefault(); }); // фокус остаётся на кнопке
+    list.addEventListener('click', function (e) {
+      e.preventDefault(); // список внутри <label>: иначе браузер «кликнет» по кнопке и откроет его снова
+      var li = e.target.closest('.sel-opt'); if (li) choose(+li.getAttribute('data-i'));
+    });
+    list.addEventListener('mousemove', function (e) { var li = e.target.closest('.sel-opt'); if (li && +li.getAttribute('data-i') !== active) setActive(+li.getAttribute('data-i')); });
+    btn.addEventListener('keydown', function (e) {
+      var k = e.key;
+      if (list.hidden) {
+        if (k === 'ArrowDown' || k === 'ArrowUp' || k === 'Enter' || k === ' ') { e.preventDefault(); api.open(true); }
+        return;
+      }
+      if (k === 'ArrowDown' || k === 'ArrowUp') { e.preventDefault(); setActive(active + (k === 'ArrowDown' ? 1 : -1)); }
+      else if (k === 'Enter' || k === ' ') { e.preventDefault(); choose(active); }
+      else if (k === 'Escape' || k === 'Tab') api.open(false);
+    });
+    new MutationObserver(build).observe(sel, { childList: true }); // fillParams пересобирает варианты
+    sel.addEventListener('change', sync);
+    selects.push(api);
+    build();
+  }
+  if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    $$('.field select', picker).forEach(enhanceSelect);
+    document.addEventListener('click', function (e) { if (!e.target.closest('.field.is-open')) closeSelects(); });
+  }
 
   /* ---------- витрина ---------- */
   var state = { cat: 'all', ids: null, brand: null, note: '' };
