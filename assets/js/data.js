@@ -47,10 +47,7 @@ window.MS_DATA = {
 
     { id: 15, cat: 'parts', brand: 'Castrol', name: 'Масло Castrol Vecton Long Drain 10W-40', size: '20 л', diam: '', axle: 'Моторное масло', img: 'castrol', price: 1350000, stock: 60, rating: 4.9, reviews: 22, tag: '' },
     { id: 16, cat: 'parts', brand: 'ATLANT', name: 'Аккумулятор ATLANT 6СТ-190', size: '190 Ач', diam: '', axle: 'АКБ', img: 'atlant', price: 2400000, stock: 15, rating: 4.8, reviews: 13, tag: '' },
-    { id: 17, cat: 'parts', brand: 'HOWO', name: 'Амортизатор кабины HOWO A7', size: 'WG1664440068', diam: '', axle: 'Подвеска кабины', img: 'amort', price: 420000, stock: 28, rating: 4.7, reviews: 9, tag: 'Новинка' },
-
-    /* Услуга для калькулятора: в витрине и поиске не показывается. Цена за 1 шину — уточнить у клиента */
-    { id: 100, cat: 'service', hidden: true, brand: 'MASTERSHINA', name: 'Шиномонтаж грузовой шины', size: 'за 1 шину', img: 'mount', src: 'assets/img/mount.svg', price: 60000, stock: 999, rating: 5, reviews: 0, tag: '' }
+    { id: 17, cat: 'parts', brand: 'HOWO', name: 'Амортизатор кабины HOWO A7', size: 'WG1664440068', diam: '', axle: 'Подвеска кабины', img: 'amort', price: 420000, stock: 28, rating: 4.7, reviews: 9, tag: 'Новинка' }
   ],
 
   /* Платёжные методы для будущего эквайринга */

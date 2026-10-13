@@ -1,4 +1,4 @@
-/* Главная MASTERSHINA: шапка и меню, баннер, калькулятор комплекта,
+/* Главная MASTERSHINA: шапка и меню, баннер, подбор шин и дисков,
    витрина с фильтрами, бренды, FAQ, шоурумы и ленивая карта */
 (function () {
   var D = MS.data, fmt = MS.fmt;
@@ -78,124 +78,85 @@
   MS.onReady(function () { loadDeferred(banner); });
   [$('[data-bprev]'), $('[data-bnext]')].concat(bd).forEach(function (b) { b.addEventListener('pointerdown', function () { loadDeferred(banner); }, { once: true }); });
 
-  /* ---------- калькулятор комплекта ---------- */
-  // оси техники: [позиция на схеме, сдвоенные колёса], подходящие шины (id из data.js)
-  var VEH = {
-    dump:    { axles: [[34, 0], [148, 1], [182, 1]], ids: [1, 3, 2] },
-    tractor: { axles: [[34, 0], [168, 1]], ids: [2, 3, 1] },
-    light:   { axles: [[38, 0], [166, 1]], ids: [4, 6, 5] },
-    loader:  { axles: [[60, 0], [156, 0]], ids: [8, 7] },
-    backhoe: { axles: [[56, 0], [164, 0]], ids: [9, 11] },
-    wheel:   { axles: [[56, 0], [164, 0]], ids: [10] }
-  };
-  var MOUNT = MS.byId(100);
-  var calc = $('#calc'), sel = calc.elements.model;
-  var cs = { veh: 'dump', pid: 1, qty: 10, term: 0, total: 0 };
-
-  function tiresOf(v) { return VEH[v].axles.reduce(function (s, a) { return s + (a[1] ? 4 : 2); }, 0); }
-
-  /* Схема осей (вид сверху): кабина слева, колёса «выпрыгивают» по очереди */
-  function drawAxles(v) {
-    var ax = VEH[v].axles, x0 = ax[0][0] - 26, x1 = ax[ax.length - 1][0] + 28, h = '', k = 0;
-    ax.forEach(function (a) { h += '<line class="ax-line" x1="' + a[0] + '" y1="8" x2="' + a[0] + '" y2="52"/>'; });
-    h += '<rect class="ax-body" x="' + x0 + '" y="18" width="' + (x1 - x0) + '" height="24" rx="8"/>';
-    h += '<rect class="ax-cab" x="' + (x0 - 4) + '" y="15" width="34" height="30" rx="8"/>';
-    ax.forEach(function (a) {
-      var ys = a[1] ? [0.5, 10, 41.5, 51] : [4, 47], hh = a[1] ? 8.5 : 9;
-      ys.forEach(function (y) {
-        h += '<rect class="ax-tire' + (a[1] ? ' dual' : '') + '" x="' + (a[0] - 11) + '" y="' + y + '" width="22" height="' + hh + '" rx="3" style="animation-delay:' + (k++ * 45) + 'ms"/>';
-      });
+  /* ---------- подбор шин и дисков (как в демо CANDY) ---------- */
+  // какие товары подходят какой технике — id из data.js
+  var VEHICLES = { dump: [1, 3, 10, 14], tractor: [2, 5, 12, 13], light: [4, 5, 6], loader: [7, 8], backhoe: [9, 11], wheel: [10] };
+  var picker = $('#picker'), form = $('.picker-form', picker), mode = 'params', ptab = 'tires';
+  var submitBtn = form.querySelector('[type=submit]');
+  function uniq(a) { return a.filter(function (v, i) { return v && a.indexOf(v) === i; }); }
+  function opts(sel, vals, any) { sel.innerHTML = '<option value="">' + any + '</option>' + vals.map(function (v) { return '<option>' + v + '</option>'; }).join(''); }
+  function pickCat() { return ptab === 'rims' ? 'rims' : form.elements.cat.value; }
+  function fillParams() {
+    var ps = D.products.filter(function (p) { return visible(p) && p.cat === pickCat(); });
+    opts(form.elements.diam, uniq(ps.map(function (p) { return p.diam; })), 'Любой');
+    opts(form.elements.axle, uniq(ps.map(function (p) { return p.axle; })), 'Любое');
+    opts(form.elements.brand, uniq(ps.map(function (p) { return p.brand; })), 'Любой');
+    count();
+  }
+  function matches() {
+    if (mode === 'vehicle' && ptab === 'tires') {
+      var ids = VEHICLES[form.elements.vehicle.value] || [];
+      return D.products.filter(function (p) { return ids.indexOf(p.id) > -1; });
+    }
+    var f = form.elements;
+    return D.products.filter(function (p) {
+      return visible(p) && p.cat === pickCat() && (!f.diam.value || p.diam === f.diam.value) &&
+        (!f.axle.value || p.axle === f.axle.value) && (!f.brand.value || p.brand === f.brand.value);
     });
-    $('.axles-svg').innerHTML = h;
-    var n = tiresOf(v);
-    $('[data-tires]').textContent = n;
-    $('[data-tires-word]').innerHTML = plural(n, 'шина', 'шины', 'шин') + '<br>на технику';
   }
-
-  function fillModels(v) {
-    sel.innerHTML = VEH[v].ids.map(function (id) {
-      var p = MS.byId(id);
-      return '<option value="' + id + '">' + p.name.replace(p.brand + ' ', '') + ' · ' + p.size + '</option>';
-    }).join('');
-    cs.pid = VEH[v].ids[0];
-  }
-
-  /* TODO (ваш вклад): условия рассрочки клиента.
-     Сейчас — простое деление без наценки с округлением до 1000 сум вверх.
-     Уточните у MASTERSHINA: есть ли наценка за срок (например, 0% на 3 мес, +X% на 6 и 12),
-     нужен ли первоначальный взнос и до скольки сум округлять платёж. */
-  function monthlyPayment(total, months) {
-    return Math.ceil(total / months / 1000) * 1000;
-  }
-
-  // плавная прокрутка числа итога
-  var numRaf;
-  function animateTotal(to) {
-    var el = $('[data-total]'), from = cs.total, t0 = null;
-    cs.total = to; cancelAnimationFrame(numRaf);
-    if (MS.reduced || from === to) { el.textContent = fmt(to); return; }
-    el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump');
-    (function step(ts) {
-      if (!t0) t0 = ts;
-      var k = Math.min((ts - t0) / 500, 1), e = 1 - Math.pow(1 - k, 3);
-      el.textContent = fmt(from + (to - from) * e);
-      if (k < 1) numRaf = requestAnimationFrame(step);
-    })(performance.now());
-  }
-
-  function compute() {
-    var p = MS.byId(cs.pid), mount = calc.elements.mount.checked;
-    var total = p.price * cs.qty + (mount ? MOUNT.price * cs.qty : 0);
-    var save = p.old ? (p.old - p.price) * cs.qty : 0;
-    $('[data-calc-img]').src = MS.img(p);
-    $('[data-calc-img]').alt = p.name;
-    $('[data-qty-out]').textContent = cs.qty;
-    $('[data-res-label]').textContent = cs.qty + ' ' + plural(cs.qty, 'шина', 'шины', 'шин') + ' × ' + fmt(p.price).replace(' сум', '') + (mount ? ' + монтаж' : '');
-    var sub = $('[data-res-sub]');
-    if (cs.term) sub.textContent = fmt(monthlyPayment(total, cs.term)) + ' в месяц · ' + cs.term + ' мес';
-    else if (save) sub.textContent = 'Экономия ' + fmt(save);
-    sub.hidden = !cs.term && !save;
-    animateTotal(total);
-  }
-
+  function count() { $('[data-found]', picker).textContent = matches().length; }
   function setVeh(v) {
-    cs.veh = v; cs.qty = tiresOf(v);
-    $$('.veh button').forEach(function (b) { b.setAttribute('aria-checked', String(b.getAttribute('data-veh') === v)); });
-    drawAxles(v); fillModels(v); compute();
+    form.elements.vehicle.value = v;
+    $$('.veh-icons button', picker).forEach(function (b) { b.classList.toggle('is-on', b.getAttribute('data-veh') === v); });
+    count();
   }
-  $$('.veh button').forEach(function (b) { b.addEventListener('click', function () { setVeh(b.getAttribute('data-veh')); }); });
-  sel.addEventListener('change', function () { cs.pid = +sel.value; compute(); });
-  calc.elements.mount.addEventListener('change', compute);
-  $$('[data-qty]').forEach(function (b) {
-    b.addEventListener('click', function () { cs.qty = Math.max(1, Math.min(40, cs.qty + +b.getAttribute('data-qty'))); compute(); });
+  form.addEventListener('change', function (e) {
+    if (e.target.name === 'cat') fillParams();
+    else if (e.target.name === 'vehicle') setVeh(e.target.value);
+    else count();
   });
-  $$('.seg button').forEach(function (b) {
+  $$('.veh-icons button', picker).forEach(function (b) { b.addEventListener('click', function () { setVeh(b.getAttribute('data-veh')); }); });
+
+  var sw = $('.switch', picker);
+  function setMode(m) {
+    mode = m; sw.setAttribute('aria-checked', String(m === 'vehicle'));
+    $$('.pm-lbl', picker).forEach(function (l) { l.classList.toggle('is-on', l.getAttribute('data-mode') === m); });
+    $('.pf-params', picker).hidden = m === 'vehicle';
+    $('.pf-vehicle', picker).hidden = m !== 'vehicle';
+    count();
+  }
+  sw.addEventListener('click', function () { setMode(mode === 'params' ? 'vehicle' : 'params'); });
+  $$('.pm-lbl', picker).forEach(function (l) { l.addEventListener('click', function () { setMode(l.getAttribute('data-mode')); }); });
+
+  // вкладки «Подбор шин / Подбор дисков»: у дисков нет типа и режима «по технике»
+  $$('.picker-tabs button', picker).forEach(function (b) {
     b.addEventListener('click', function () {
-      cs.term = +b.getAttribute('data-term');
-      $$('.seg button').forEach(function (x) { x.setAttribute('aria-checked', String(x === b)); });
-      compute();
+      ptab = b.getAttribute('data-pt');
+      $$('.picker-tabs button', picker).forEach(function (x) { x.classList.toggle('is-active', x === b); x.setAttribute('aria-selected', String(x === b)); });
+      $('.picker-mode', picker).style.display = ptab === 'rims' ? 'none' : '';
+      form.elements.cat.closest('.field').style.display = ptab === 'rims' ? 'none' : '';
+      if (ptab === 'rims') setMode('params');
+      submitBtn.firstChild.nodeValue = ptab === 'rims' ? 'Найти диски ' : 'Найти шины ';
+      fillParams();
     });
   });
-  $('[data-mount-price]').textContent = '+' + fmt(MOUNT.price).replace(' сум', '') + ' сум/шт';
-  $('[data-calc-add]').addEventListener('click', function (e) {
-    var p = MS.byId(cs.pid), mount = calc.elements.mount.checked;
-    MS.add(p.id, cs.qty);
-    if (mount) MS.add(MOUNT.id, cs.qty);
-    MS.fly($('[data-calc-img]'));
-    MS.toast('<b>Комплект в корзине</b><span>' + p.name + ' × ' + cs.qty + (mount ? ' + шиномонтаж' : '') + '</span>');
-    burst(e.currentTarget, 22);
+
+  $$('.picker-quick [data-q]', picker).forEach(function (b) {
+    b.addEventListener('click', function () {
+      var size = b.getAttribute('data-q');
+      setFilter({ ids: D.products.filter(function (p) { return p.size === size; }).map(function (p) { return p.id; }), note: 'размер ' + size });
+      goCatalog();
+    });
   });
-  $('[data-calc-ask]').addEventListener('click', function () {
-    var p = MS.byId(cs.pid), vb = $('.veh [aria-checked="true"]');
-    var msg = 'Техника: ' + vb.querySelector('b').textContent + ' ' + vb.querySelector('small').textContent +
-      '. Шина: ' + p.name + ' ' + p.size + ' × ' + cs.qty +
-      '. Шиномонтаж: ' + (calc.elements.mount.checked ? 'да' : 'нет') +
-      '. Оплата: ' + (cs.term ? 'рассрочка ' + cs.term + ' мес' : 'сразу') +
-      '. Итого: ' + fmt(cs.total) + '.';
-    MS.openCallback('Заявка на комплект', msg);
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var f = form.elements;
+    var note = mode === 'vehicle' && ptab === 'tires' ? f.vehicle.selectedOptions[0].text :
+      [ptab === 'rims' ? 'Диски' : f.cat.selectedOptions[0].text, f.diam.value, f.axle.value, f.brand.value].filter(Boolean).join(' · ');
+    setFilter({ ids: matches().map(function (p) { return p.id; }), note: note });
+    goCatalog();
   });
-  calc.addEventListener('submit', function (e) { e.preventDefault(); });
-  setVeh('dump');
+  fillParams();
 
   /* ---------- витрина ---------- */
   var state = { cat: 'all', ids: null, brand: null, note: '' };
@@ -236,7 +197,7 @@
   function renderGrid() {
     var l = list();
     grid.innerHTML = l.map(card).join('') ||
-      '<div class="grid-empty"><b>Пока ничего не выбрано</b>Добавьте товары в избранное или оставьте заявку — подберём под вашу технику.<br><button type="button" class="btn btn-red" data-callback="Подбор товара">Оставить заявку</button></div>';
+      '<div class="grid-empty"><b>Ничего не нашлось</b>Оставьте заявку — подберём под вашу технику и привезём под заказ.<br><button type="button" class="btn btn-red" data-callback="Подбор товара">Оставить заявку</button></div>';
     grid.scrollLeft = 0;
     $$('.chips button').forEach(function (b) { b.classList.toggle('is-active', b.getAttribute('data-tab') === state.cat && !state.ids && !state.brand); });
     note.hidden = !state.note;

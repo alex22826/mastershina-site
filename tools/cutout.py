@@ -46,22 +46,6 @@ if n2 >= 1:
     main = lab2 == (1 + int(np.argmax(sizes)))
     core = core & ndi.binary_dilation(main, iterations=5)
 
-# «пол» под шиной: светлые серые пятна в нижней части объекта, примыкающие к фону
-if bgkind == 'white':
-    ys_c = np.where(core.any(1))[0]
-    y_top, y_bot = ys_c.min(), ys_c.max()
-    low = yy > y_bot - 0.18 * (y_bot - y_top)
-    cand = core & low & (chroma < 30) & (L > 0.42 * B)
-    lab3, n3 = ndi.label(cand)
-    if n3:
-        touching = np.unique(lab3[ndi.binary_dilation(~core, iterations=2) & cand])
-        floor = np.isin(lab3, touching[touching > 0])
-        core = core & ~floor
-        core = ndi.binary_opening(core, iterations=2)
-    # тонкий клин тени на полу (высота < ~40px) срезаем вертикальным «открытием» только в нижней зоне
-    vert = ndi.binary_opening(core, structure=np.ones((41, 1), bool))
-    core = np.where(low, core & vert, core)
-
 # альфа: ядро = 1, кромка шириной ~2.5px — по смешиванию с фоном, дальше (тень на полу) = 0
 dist = ndi.distance_transform_edt(~core)
 near = (dist > 0) & (dist <= 2.5)

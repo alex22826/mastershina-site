@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MASTERSHINA — грузовые шины, диски и запчасти в Ташкенте</title>
-<meta name="description" content="MASTERSHINA — официальный дистрибьютор ROADONE и CETROC в Узбекистане. Грузовые шины, шины для спецтехники HENGTAR, диски SULTAN, запчасти HOWO и SHACMAN. Калькулятор комплекта, рассрочка, шиномонтаж.">
+<meta name="description" content="MASTERSHINA — официальный дистрибьютор ROADONE и CETROC в Узбекистане. Грузовые шины, шины для спецтехники HENGTAR, диски SULTAN, запчасти HOWO и SHACMAN. Подбор шин по параметрам и по технике, рассрочка, шиномонтаж.">
 <meta name="theme-color" content="#111114">
 <meta property="og:type" content="website">
 <meta property="og:title" content="MASTERSHINA — шины, диски и запчасти для грузовиков и спецтехники">
@@ -14,7 +14,7 @@
 <!-- Шрифт и картинка первого экрана — в приоритете -->
 <link rel="preload" href="assets/fonts/rubik-cyr.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/rubik-lat.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/img/decor/drive-red.webp" as="image" fetchpriority="high">
+<link rel="preload" href="assets/img/decor/wheel-drive.webp" as="image" fetchpriority="high">
 
 <!-- Критичные стили: шрифт и прелоадер. Показываются сразу, не дожидаясь style.css -->
 <style>
@@ -155,7 +155,8 @@ html.js:not(.is-ready){overflow:hidden}
   <symbol id="i-mail" viewBox="0 0 24 24"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
   <symbol id="i-percent" viewBox="0 0 24 24"><line x1="19" x2="5" y1="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></symbol>
   <symbol id="i-tire" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></symbol>
-  <!-- силуэты техники для калькулятора -->
+  <symbol id="i-disc" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5.5"/><circle cx="12" cy="12" r="1.5"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3"/></symbol>
+  <!-- силуэты техники для подбора -->
   <symbol id="v-dump" viewBox="0 0 48 28"><path d="M4 18v-7l3.5-5H14v12"/><path d="M16 18V7h22l6 6v5"/><path d="M2 18h44"/><circle cx="9" cy="22" r="3.5"/><circle cx="29" cy="22" r="3.5"/><circle cx="38" cy="22" r="3.5"/></symbol>
   <symbol id="v-tractor" viewBox="0 0 48 28"><path d="M4 18V8a2 2 0 0 1 2-2h8l3 5v7"/><path d="M7 10.5h6"/><path d="M2 18h40"/><path d="M24 14.5h13"/><circle cx="10" cy="22" r="3.5"/><circle cx="29" cy="22" r="3.5"/><circle cx="37" cy="22" r="3.5"/></symbol>
   <symbol id="v-light" viewBox="0 0 48 28"><path d="M4 18v-6l4-5h7v11"/><rect x="17" y="5" width="27" height="13" rx="1.5"/><path d="M2 18h43"/><circle cx="10" cy="22" r="3.5"/><circle cx="36" cy="22" r="3.5"/></symbol>
@@ -170,7 +171,7 @@ html.js:not(.is-ready){overflow:hidden}
 <div class="topline">
   <div class="container topline-in">
     <span class="city"><svg class="i"><use href="#i-pin"/></svg>Ташкент</span>
-    <nav class="topline-nav" aria-label="Разделы"><a href="#calc">Калькулятор</a><a href="#catalog">Каталог</a><a href="#about">О компании</a><a href="#brands">Бренды</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a></nav>
+    <nav class="topline-nav" aria-label="Разделы"><a href="#picker">Подбор шин</a><a href="#catalog">Каталог</a><a href="#about">О компании</a><a href="#brands">Бренды</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a></nav>
     <div class="topline-right">
       <a href="tel:555111777" class="tl-phone"><b>555 111 777</b><small>Пн–Пт 09:00–20:00</small></a>
       <button type="button" class="tl-call" data-callback>Заказать звонок</button>
@@ -189,9 +190,9 @@ html.js:not(.is-ready){overflow:hidden}
     <div class="mega-wrap">
       <button type="button" class="catalog-btn" aria-expanded="false" aria-controls="mega"><span class="cb-ico"><i></i><i></i><i></i></span>Каталог</button>
       <div class="mega" id="mega" aria-hidden="true">
-        <a href="#catalog" data-filter="truck" class="mega-item m-dark"><img data-src="assets/img/decor/drive-red.webp" alt="" decoding="async"><b>Грузовые шины</b><span>ROADONE, CETROC, KAPSEN</span></a>
-        <a href="#catalog" data-filter="special" class="mega-item m-red"><img data-src="assets/img/decor/otr.webp" alt="" decoding="async"><b>Спецтехника</b><span>HENGTAR · погрузчики</span></a>
-        <a href="#catalog" data-filter="rims" class="mega-item m-light"><img data-src="assets/img/decor/rim-silver.webp" alt="" decoding="async"><b>Диски</b><span>SULTAN, BEITER</span></a>
+        <a href="#catalog" data-filter="truck" class="mega-item m-dark"><img data-src="assets/img/decor/wheel-drive.webp" alt="" decoding="async"><b>Грузовые шины</b><span>ROADONE, CETROC, KAPSEN</span></a>
+        <a href="#catalog" data-filter="special" class="mega-item m-red"><img data-src="assets/img/decor/wheel-otr.webp" alt="" decoding="async"><b>Спецтехника</b><span>HENGTAR · погрузчики</span></a>
+        <a href="#catalog" data-filter="rims" class="mega-item m-light"><img data-src="assets/img/decor/wheel-rim.webp" alt="" decoding="async"><b>Диски</b><span>SULTAN, BEITER</span></a>
         <a href="#catalog" data-filter="parts" class="mega-item m-tint"><img data-src="assets/img/products/castrol.webp" alt="" decoding="async"><b>Запчасти и масла</b><span>HOWO, SHACMAN, XCMG</span></a>
       </div>
     </div>
@@ -214,13 +215,13 @@ html.js:not(.is-ready){overflow:hidden}
   <div class="mnav-box">
     <div class="mnav-top"><span class="logo-text">MASTER<b>SHINA</b></span><button class="mnav-x" type="button" aria-label="Закрыть меню"><svg class="i"><use href="#i-x"/></svg></button></div>
     <nav class="mnav-cats">
-      <a href="#catalog" data-filter="truck"><img data-src="assets/img/decor/drive-red.webp" alt="">Грузовые шины</a>
-      <a href="#catalog" data-filter="special"><img data-src="assets/img/decor/otr.webp" alt="">Спецтехника</a>
-      <a href="#catalog" data-filter="rims"><img data-src="assets/img/decor/rim-silver.webp" alt="">Диски</a>
+      <a href="#catalog" data-filter="truck"><img data-src="assets/img/decor/wheel-drive.webp" alt="">Грузовые шины</a>
+      <a href="#catalog" data-filter="special"><img data-src="assets/img/decor/wheel-otr.webp" alt="">Спецтехника</a>
+      <a href="#catalog" data-filter="rims"><img data-src="assets/img/decor/wheel-rim.webp" alt="">Диски</a>
       <a href="#catalog" data-filter="parts"><img data-src="assets/img/products/atlant.webp" alt="">Запчасти</a>
     </nav>
     <nav class="mnav-links">
-      <a href="#calc"><svg class="i"><use href="#i-calc"/></svg>Калькулятор комплекта</a>
+      <a href="#picker"><svg class="i"><use href="#i-tire"/></svg>Подбор шин и дисков</a>
       <a href="#about"><svg class="i"><use href="#i-award"/></svg>О компании</a>
       <a href="#brands"><svg class="i"><use href="#i-layers"/></svg>Бренды</a>
       <a href="#faq"><svg class="i"><use href="#i-help"/></svg>Частые вопросы</a>
@@ -233,7 +234,7 @@ html.js:not(.is-ready){overflow:hidden}
 
 <main id="top">
 
-<!-- ===== Первый экран: баннер + калькулятор ===== -->
+<!-- ===== Первый экран: баннер + подбор шин ===== -->
 <section class="hero">
   <div class="container hero-grid">
     <div class="banner" aria-roledescription="карусель" aria-label="Акции и предложения">
@@ -247,8 +248,7 @@ html.js:not(.is-ready){overflow:hidden}
           </div>
           <div class="bslide-art">
             <span class="blob"></span>
-            <img src="assets/img/decor/steer.webp" alt="" class="t t-back" width="530" height="760" decoding="async" data-critical>
-            <div class="t t-front"><img src="assets/img/decor/drive-red.webp" alt="Грузовая шина на красном диске" class="t-img" width="638" height="900" fetchpriority="high" data-critical></div>
+            <div class="t t-front"><img src="assets/img/decor/wheel-drive.webp" alt="Грузовое колесо на красном диске" class="t-img" width="683" height="820" fetchpriority="high" data-critical></div>
             <span class="sticker s1">в наличии<br><b>9.00 R20</b></span>
           </div>
         </article>
@@ -261,8 +261,7 @@ html.js:not(.is-ready){overflow:hidden}
           </div>
           <div class="bslide-art">
             <span class="blob"></span>
-            <img data-src="assets/img/decor/forklift.webp" alt="" class="t t-back t-wide" width="677" height="700" decoding="async">
-            <div class="t t-front t-wide"><img data-src="assets/img/decor/otr.webp" alt="Шина для погрузчика" class="t-img" width="748" height="860" decoding="async"></div>
+            <div class="t t-front"><img data-src="assets/img/decor/wheel-otr.webp" alt="Колесо погрузчика" class="t-img" width="740" height="820" decoding="async"></div>
             <span class="sticker s1">новинка<br><b>16/70-20</b></span>
           </div>
         </article>
@@ -275,8 +274,7 @@ html.js:not(.is-ready){overflow:hidden}
           </div>
           <div class="bslide-art">
             <span class="blob"></span>
-            <img data-src="assets/img/decor/rim-red.webp" alt="" class="t t-back t-rim" width="626" height="640" decoding="async">
-            <div class="t t-front t-rim"><img data-src="assets/img/decor/rim-silver.webp" alt="Стальной грузовой диск" class="t-img" width="743" height="760" decoding="async"></div>
+            <div class="t t-front t-front-rim"><img data-src="assets/img/decor/wheel-rim.webp" alt="Стальной грузовой диск" class="t-img" width="809" height="760" decoding="async"></div>
             <span class="sticker s1">R22.5<br><b>10 отверстий</b></span>
           </div>
         </article>
@@ -285,12 +283,11 @@ html.js:not(.is-ready){overflow:hidden}
             <span class="pill"><svg class="i"><use href="#i-percent"/></svg>Оптом и в рассрочку</span>
             <h2>Комплект сейчас — <mark>платите частями</mark></h2>
             <p>Оптовые цены для автопарков от 4 шин. Рассрочка без поездок в банк — оформим за один визит.</p>
-            <div class="bslide-cta"><a href="#calc" class="btn btn-white">Рассчитать комплект <svg class="i"><use href="#i-calc"/></svg></a><button type="button" class="link-light" data-callback="Оптовый прайс">Оптовый прайс</button></div>
+            <div class="bslide-cta"><a href="#picker" class="btn btn-white">Подобрать шины <svg class="i"><use href="#i-arrow"/></svg></a><button type="button" class="link-light" data-callback="Оптовый прайс">Оптовый прайс</button></div>
           </div>
           <div class="bslide-art">
             <span class="blob"></span>
-            <img data-src="assets/img/decor/steer.webp" alt="" class="t t-back t-flip" width="530" height="760" decoding="async">
-            <div class="t t-front"><img data-src="assets/img/decor/mixed.webp" alt="Грузовая шина на чёрном диске" class="t-img" width="709" height="900" decoding="async"></div>
+            <div class="t t-front"><img data-src="assets/img/decor/wheel-mixed.webp" alt="Грузовое колесо на чёрном диске" class="t-img" width="704" height="820" decoding="async"></div>
             <span class="sticker s1">рассрочка<br><b>до 12 мес</b></span>
           </div>
         </article>
@@ -302,64 +299,52 @@ html.js:not(.is-ready){overflow:hidden}
       </div>
     </div>
 
-    <!-- Калькулятор комплекта -->
-    <form class="calc" id="calc" aria-labelledby="calc-title" novalidate>
-      <div class="calc-head">
-        <h2 class="calc-title" id="calc-title"><svg class="i"><use href="#i-calc"/></svg>Калькулятор комплекта</h2>
-        <span class="calc-badge">+ рассрочка</span>
+    <!-- Подбор шин и дисков -->
+    <div class="picker" id="picker">
+      <div class="picker-tabs" role="tablist" aria-label="Что подбираем">
+        <button type="button" role="tab" aria-selected="true" class="is-active" data-pt="tires"><svg class="i"><use href="#i-tire"/></svg>Подбор шин</button>
+        <button type="button" role="tab" aria-selected="false" data-pt="rims"><svg class="i"><use href="#i-disc"/></svg>Подбор дисков</button>
       </div>
-
-      <div class="calc-label">1. Ваша техника</div>
-      <div class="veh" role="radiogroup" aria-label="Тип техники">
-        <button type="button" role="radio" aria-checked="true" data-veh="dump"><svg class="vi"><use href="#v-dump"/></svg><b>Самосвал</b><small>6×4</small></button>
-        <button type="button" role="radio" aria-checked="false" data-veh="tractor"><svg class="vi"><use href="#v-tractor"/></svg><b>Тягач</b><small>4×2</small></button>
-        <button type="button" role="radio" aria-checked="false" data-veh="light"><svg class="vi"><use href="#v-light"/></svg><b>Грузовик</b><small>ISUZU, GAZ</small></button>
-        <button type="button" role="radio" aria-checked="false" data-veh="loader"><svg class="vi"><use href="#v-loader"/></svg><b>Погрузчик</b><small>вилочный</small></button>
-        <button type="button" role="radio" aria-checked="false" data-veh="backhoe"><svg class="vi"><use href="#v-backhoe"/></svg><b>Экскаватор</b><small>-погрузчик</small></button>
-        <button type="button" role="radio" aria-checked="false" data-veh="wheel"><svg class="vi"><use href="#v-wheel"/></svg><b>Фронтальный</b><small>погрузчик</small></button>
-      </div>
-
-      <div class="axles" aria-hidden="true">
-        <svg class="axles-svg" viewBox="0 0 220 60" preserveAspectRatio="xMinYMid meet"></svg>
-        <div class="axles-n"><b data-tires>10</b><span data-tires-word>шин<br>на технику</span></div>
-      </div>
-
-      <div class="calc-label">2. Шина и количество</div>
-      <div class="calc-row">
-        <label class="field field-model">
-          <span class="fm-img"><img data-calc-img src="assets/img/products/gd800.webp" alt="" width="279" height="477" data-critical></span>
-          <span class="fm-txt"><span>Модель · размер</span><select name="model" aria-label="Модель шины"></select></span>
-        </label>
-        <div class="qty">
-          <button type="button" data-qty="-1" aria-label="Меньше шин"><svg class="i"><use href="#i-minus"/></svg></button>
-          <output data-qty-out aria-live="polite">10</output>
-          <button type="button" data-qty="1" aria-label="Больше шин"><svg class="i"><use href="#i-plus"/></svg></button>
+      <div class="picker-body">
+        <div class="picker-mode">
+          <span class="pm-lbl is-on" data-mode="params">По параметрам</span>
+          <button type="button" class="switch" role="switch" aria-checked="false" aria-label="Переключить режим подбора"><i></i></button>
+          <span class="pm-lbl" data-mode="vehicle">По технике</span>
+        </div>
+        <form class="picker-form" novalidate>
+          <div class="pf pf-params">
+            <label class="field"><span>Тип</span><select name="cat"><option value="truck">Грузовые</option><option value="special">Спецтехника</option></select></label>
+            <label class="field"><span>Диаметр</span><select name="diam"></select></label>
+            <label class="field"><span>Ось / назначение</span><select name="axle"></select></label>
+            <label class="field"><span>Производитель</span><select name="brand"></select></label>
+          </div>
+          <div class="pf pf-vehicle" hidden>
+            <label class="field field-wide"><span>Ваша техника</span><select name="vehicle">
+              <option value="dump">Самосвал / карьерная техника</option>
+              <option value="tractor">Тягач, магистральный грузовик</option>
+              <option value="light">Лёгкий грузовик (ISUZU, GAZ)</option>
+              <option value="loader">Вилочный погрузчик</option>
+              <option value="backhoe">Экскаватор-погрузчик</option>
+              <option value="wheel">Фронтальный погрузчик</option>
+            </select></label>
+            <div class="veh-icons">
+              <button type="button" class="is-on" data-veh="dump"><svg class="vi"><use href="#v-dump"/></svg><span>Самосвал</span></button>
+              <button type="button" data-veh="tractor"><svg class="vi"><use href="#v-tractor"/></svg><span>Тягач</span></button>
+              <button type="button" data-veh="light"><svg class="vi"><use href="#v-light"/></svg><span>Грузовик</span></button>
+              <button type="button" data-veh="loader"><svg class="vi"><use href="#v-loader"/></svg><span>Погрузчик</span></button>
+              <button type="button" data-veh="backhoe"><svg class="vi"><use href="#v-backhoe"/></svg><span>Экскаватор</span></button>
+              <button type="button" data-veh="wheel"><svg class="vi"><use href="#v-wheel"/></svg><span>Фронтальный</span></button>
+            </div>
+          </div>
+          <div class="picker-quick"><span>Часто ищут:</span><button type="button" data-q="9.00 R20">9.00 R20</button><button type="button" data-q="8.25 R16LT">8.25 R16LT</button><button type="button" data-q="11.75 R22.5">11.75 R22.5</button><button type="button" data-q="16/70-20">16/70-20</button></div>
+          <button type="submit" class="btn btn-red btn-block">Найти шины <span class="found" data-found></span></button>
+        </form>
+        <div class="picker-links">
+          <button type="button" data-callback="Помощь в подборе по фото шины"><svg class="i"><use href="#i-help"/></svg>Где смотреть размер?</button>
+          <button type="button" data-callback="Помощь в подборе"><svg class="i"><use href="#i-phone"/></svg>Помощь в подборе</button>
         </div>
       </div>
-
-      <div class="calc-label">3. Монтаж и оплата</div>
-      <div class="calc-opts">
-        <label class="chk"><input type="checkbox" name="mount" checked><i></i><span>Шиномонтаж <small data-mount-price></small></span></label>
-        <div class="seg" role="radiogroup" aria-label="Способ оплаты">
-          <button type="button" role="radio" aria-checked="true" data-term="0">Сразу</button>
-          <button type="button" role="radio" aria-checked="false" data-term="3">3 мес</button>
-          <button type="button" role="radio" aria-checked="false" data-term="6">6 мес</button>
-          <button type="button" role="radio" aria-checked="false" data-term="12">12 мес</button>
-        </div>
-      </div>
-
-      <div class="calc-res">
-        <div class="calc-sum">
-          <span data-res-label>Итого</span>
-          <b data-total>0 сум</b>
-          <small class="calc-sub" data-res-sub hidden></small>
-        </div>
-        <div class="calc-cta">
-          <button type="button" class="btn btn-red" data-calc-add><svg class="i"><use href="#i-cart"/></svg>В корзину</button>
-          <button type="button" class="btn-ico" data-calc-ask aria-label="Отправить расчёт менеджеру" title="Отправить расчёт менеджеру"><svg class="i"><use href="#i-phone"/></svg></button>
-        </div>
-      </div>
-    </form>
+    </div>
   </div>
 </section>
 
@@ -382,15 +367,15 @@ html.js:not(.is-ready){overflow:hidden}
     <div class="cats">
       <a href="#catalog" data-filter="truck" class="cat c-dark" data-reveal>
         <div class="cat-txt"><span class="cat-count" data-cat-count="truck"></span><h3>Грузовые шины</h3><span class="cat-tags"><i>Рулевые</i><i>Ведущие</i><i>Универсальные</i></span></div>
-        <img src="assets/img/decor/drive-red.webp" alt="" width="638" height="900" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
+        <img src="assets/img/decor/wheel-drive.webp" alt="" width="683" height="820" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
       </a>
       <a href="#catalog" data-filter="special" class="cat c-red" data-reveal data-delay="80">
         <div class="cat-txt"><span class="cat-count" data-cat-count="special"></span><h3>Спецтехника</h3><span class="cat-tags"><i>Погрузчики</i><i>Карьер</i></span></div>
-        <img src="assets/img/decor/otr.webp" alt="" width="748" height="860" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
+        <img src="assets/img/decor/wheel-otr.webp" alt="" width="740" height="820" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
       </a>
       <a href="#catalog" data-filter="rims" class="cat c-light" data-reveal data-delay="160">
         <div class="cat-txt"><span class="cat-count" data-cat-count="rims"></span><h3>Диски</h3><span class="cat-tags"><i>R19.5</i><i>R20</i><i>R22.5</i></span></div>
-        <img src="assets/img/decor/rim-silver.webp" alt="" class="cat-img-rim" width="743" height="760" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
+        <img src="assets/img/decor/wheel-rim.webp" alt="" class="cat-img-rim" width="809" height="760" loading="lazy" decoding="async"><span class="cat-go"><svg class="i"><use href="#i-arrow"/></svg></span>
       </a>
       <a href="#catalog" data-filter="parts" class="cat c-tint" data-reveal data-delay="240">
         <div class="cat-txt"><span class="cat-count" data-cat-count="parts"></span><h3>Запчасти и масла</h3><span class="cat-tags"><i>HOWO</i><i>SHACMAN</i><i>XCMG</i></span></div>
@@ -490,8 +475,8 @@ html.js:not(.is-ready){overflow:hidden}
       </div>
     </div>
     <div class="faq">
-      <details data-reveal open><summary>Как подобрать размер шины?</summary><div class="faq-a"><p>Размер указан на боковине шины, например 9.00 R20 или 315/80 R22.5. Пришлите фото боковины в Telegram — менеджер подберёт подходящую модель и аналоги в наличии. Посчитать комплект на вашу технику можно в калькуляторе вверху страницы.</p></div></details>
-      <details data-reveal><summary>Можно ли купить в рассрочку?</summary><div class="faq-a"><p>Да, шины, диски и запчасти можно оформить в рассрочку — в шоуруме или онлайн при оформлении заказа. Примерный ежемесячный платёж показывает калькулятор комплекта.</p></div></details>
+      <details data-reveal open><summary>Как подобрать размер шины?</summary><div class="faq-a"><p>Размер указан на боковине шины, например 9.00 R20 или 315/80 R22.5. Пришлите фото боковины в Telegram — менеджер подберёт подходящую модель и аналоги в наличии. Подобрать шины по параметрам или по вашей технике можно в форме подбора вверху страницы.</p></div></details>
+      <details data-reveal><summary>Можно ли купить в рассрочку?</summary><div class="faq-a"><p>Да, шины, диски и запчасти можно оформить в рассрочку — в шоуруме или онлайн при оформлении заказа.</p></div></details>
       <details data-reveal><summary>Какие способы оплаты доступны?</summary><div class="faq-a"><p>Payme, Click, Uzum, банковские карты UzCard, HUMO и Visa, наличные в шоуруме, а для компаний — перечисление по счёту.</p></div></details>
       <details data-reveal><summary>Есть ли оптовые цены для автопарков?</summary><div class="faq-a"><p>Да. Для перевозчиков, автопарков и строительных компаний — оптовые цены от 4 шин, персональный менеджер и отсрочка для постоянных клиентов.</p></div></details>
       <details data-reveal><summary>Доставляете в регионы?</summary><div class="faq-a"><p>Да, отправляем по всему Узбекистану. По Ташкенту — доставка в день заказа.</p></div></details>
@@ -553,7 +538,7 @@ html.js:not(.is-ready){overflow:hidden}
       </div>
     </div>
     <div class="footer-col"><h4>Каталог</h4><a href="#catalog" data-filter="truck">Грузовые шины</a><a href="#catalog" data-filter="special">Шины для спецтехники</a><a href="#catalog" data-filter="rims">Диски</a><a href="#catalog" data-filter="parts">Запчасти и масла</a></div>
-    <div class="footer-col"><h4>Покупателям</h4><a href="#calc">Калькулятор комплекта</a><a href="#faq">Оплата и рассрочка</a><a href="#faq">Доставка</a><a href="#faq">Частые вопросы</a></div>
+    <div class="footer-col"><h4>Покупателям</h4><a href="#picker">Подбор шин и дисков</a><a href="#faq">Оплата и рассрочка</a><a href="#faq">Доставка</a><a href="#faq">Частые вопросы</a></div>
     <div class="footer-col"><h4>Контакты</h4><a href="tel:555111777"><b>555 111 777</b></a><a href="tel:+998998579911">+998 99 857-99-11</a><a href="mailto:info@mastershina.uz">info@mastershina.uz</a><span>Ташкент, ул. Узумзор, 37</span><span>Пн–Пт 09:00–20:00</span></div>
   </div>
   <div class="container footer-bottom">
@@ -567,7 +552,7 @@ html.js:not(.is-ready){overflow:hidden}
 <!-- Нижняя панель на телефоне -->
 <nav class="mbar" aria-label="Быстрое меню">
   <a href="#categories"><svg class="i"><use href="#i-grid"/></svg><span>Каталог</span></a>
-  <a href="#calc"><svg class="i"><use href="#i-calc"/></svg><span>Расчёт</span></a>
+  <a href="#picker"><svg class="i"><use href="#i-tire"/></svg><span>Подбор</span></a>
   <button type="button" data-cart-open><svg class="i"><use href="#i-cart"/></svg><em data-cart-count class="is-empty">0</em><span>Корзина</span></button>
   <a href="tel:555111777" class="mbar-call"><svg class="i"><use href="#i-phone"/></svg><span>Звонок</span></a>
 </nav>
