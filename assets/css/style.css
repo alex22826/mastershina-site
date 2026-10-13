@@ -140,7 +140,7 @@ h1, h2, h3, h4, p { margin: 0; }
 .banner-track { position: absolute; inset: 0; }
 .bslide { position: absolute; inset: 0; display: grid; grid-template-columns: 1.05fr .95fr; align-items: center; padding: 40px 0 70px 48px; visibility: hidden; opacity: 0; transition: opacity .6s var(--ease), visibility 0s .6s; overflow: hidden; }
 .bslide.is-active { visibility: visible; opacity: 1; transition: opacity .6s var(--ease); }
-.b-dark { background: radial-gradient(circle at 82% 34%, #4b0e13 0, rgba(17, 17, 20, 0) 46%), var(--ink); color: #fff; }
+.b-dark { background: radial-gradient(ellipse at 74% 50%, #5c1218 0, rgba(17, 17, 20, 0) 54%), var(--ink); color: #fff; }
 .b-red { background: radial-gradient(circle at 82% 30%, #ff5f64 0, rgba(227, 30, 36, 0) 46%), var(--red); color: #fff; }
 .b-light { background: radial-gradient(circle at 82% 30%, #fff 0, rgba(255, 255, 255, 0) 46%), #e9e9ee; color: var(--ink); }
 .b-split { background: linear-gradient(118deg, var(--ink) 0 57%, var(--red) 57.2%); color: #fff; }
@@ -167,17 +167,22 @@ mark { background: var(--red); color: #fff; padding: 0 .22em; border-radius: 12p
 .b-red .price-tag { background: rgba(255, 255, 255, .2); }
 .b-light .price-tag { background: #fff; }
 .bslide-art { position: relative; height: 100%; min-height: 300px; }
-.blob { position: absolute; left: 6%; top: 8%; width: 84%; aspect-ratio: 1; background: rgba(255, 255, 255, .07); border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; animation: blob 9s ease-in-out infinite; }
+.blob { position: absolute; left: 0; top: 14%; width: 92%; aspect-ratio: 1; background: rgba(255, 255, 255, .1); border-radius: 42% 58% 63% 37% / 41% 44% 56% 59%; animation: blob 9s ease-in-out infinite; }
 .b-red .blob { background: rgba(255, 255, 255, .2); }
 .b-light .blob { background: #fff; }
 .b-split .blob { background: rgba(255, 255, 255, .14); }
 .t { position: absolute; }
-.t-img { display: block; height: 100%; width: auto; }
-.t-front { height: 90%; left: 34%; top: 2%; z-index: 2; }
-.t-front::after { content: ''; position: absolute; z-index: -1; left: 6%; right: 6%; bottom: -3%; height: 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0)); }
-.t-back { height: 64%; width: auto; left: 2%; top: 26%; transform: rotate(-14deg); opacity: .95; }
-.t-rim { height: 50%; top: 36%; }
-.t-front-rim { height: 66%; top: 14%; left: 30%; }
+/* передняя шина ограничена и по высоте, и по ширине — задняя всегда выглядывает слева */
+.t-img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: 60% 50%; }
+.t-front { height: 86%; width: 70%; right: 0; top: 5%; z-index: 2; }
+.t-front::after { content: ''; position: absolute; z-index: -1; left: 18%; right: 12%; bottom: -2%; height: 8%; border-radius: 50%; background: radial-gradient(closest-side, rgba(0, 0, 0, .55), rgba(0, 0, 0, 0)); }
+.t-back { height: 56%; width: auto; max-width: 62%; object-fit: contain; left: -2%; top: 30%; transform: rotate(-14deg); opacity: .95; }
+/* широкие шины спецтехники и диски — ниже ростом, чтобы влезали целиком */
+.t-front.t-wide { height: 74%; width: 76%; top: 12%; }
+.t-back.t-wide { height: 46%; top: 40%; }
+.t-front.t-rim { height: 66%; width: 74%; top: 12%; }
+.t-back.t-rim { height: 50%; top: 34%; }
+.t-flip { scale: -1 1; }
 .is-ready .bslide.is-active .t-front { animation: popIn .9s var(--spring) .15s both, bob 5s ease-in-out 1.2s infinite; }
 .is-ready .bslide.is-active .t-back { animation: popInBack .9s var(--spring) .3s both; }
 .is-ready .bslide.is-active .bslide-txt > * { animation: slideUp .7s var(--ease) both; }
@@ -747,10 +752,12 @@ mark { background: var(--red); color: #fff; padding: 0 .22em; border-radius: 12p
   .bslide-cta { margin-top: 18px; gap: 14px; }
   .bslide-cta .btn { height: 52px; padding: 0 22px; }
   .bslide-art { min-height: 200px; }
-  .t-front { height: 100%; left: 40%; top: 0; }
-  .t-back { height: 74%; left: 8%; top: 18%; }
-  .t-front-rim { height: 80%; top: 8%; left: 34%; }
-  .t-rim { height: 58%; top: 30%; }
+  .t-front { height: 100%; width: 62%; right: 0; top: 0; }
+  .t-back { height: 78%; left: 2%; top: 14%; }
+  .t-front.t-wide { height: 92%; width: 70%; top: 4%; }
+  .t-back.t-wide { height: 62%; top: 28%; }
+  .t-front.t-rim { height: 88%; width: 64%; top: 6%; }
+  .t-back.t-rim { height: 64%; top: 24%; }
   .bslide .s1 { right: 0; bottom: 4%; }
   .bslide::before { width: 380px; height: 380px; border-width: 44px; right: -150px; bottom: -150px; }
   .banner-nav { left: 20px; right: auto; top: auto; bottom: 20px; }
